@@ -35,3 +35,4 @@ Main.js, App.svelte, package.json, rollup.config.js are all created by cloning t
 ## References used
 
 - Creating the map using [Leaflet.js](https://leafletjs.com/reference-1.7.1.html#map-factory).
+- Adding a draw component to the map that only draws [polygons](https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html).
