@@ -33,3 +33,5 @@ I went ahead selected Sapper/Svelte for the creation of the website. A few reaso
 Main.js, App.svelte, package.json, rollup.config.js are all created by cloning the default svelte project.
 
 ## References used
+
+- Creating the [map](https://leafletjs.com/reference-1.7.1.html#map-factory) using Leaflet.js
