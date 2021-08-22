@@ -32,6 +32,18 @@ I went ahead selected Sapper/Svelte for the creation of the website. A few reaso
 
 Main.js, App.svelte, package.json, rollup.config.js are all created by cloning the default svelte project.
 
+## How to run and test
+
+You are able to run this locally by running the following commands
+
+- `npm install`
+- `npm run dev`
+    - Running dev allows live reloading of the app. You can find the url to open in the terminal but it's normally `localhost:5000/`
+
+You are able to run all avilable test by running the following command.
+
+- `npm run test`
+
 ## References used
 
 - Creating the map using [Leaflet.js](https://leafletjs.com/reference-1.7.1.html#map-factory).
