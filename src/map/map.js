@@ -12,6 +12,7 @@ let editableLayers;
 // Lat Long values for Bentonville downtown
 const initialView = [36.37225557257298, -94.20976641751479];
 
+
 let createDrawControl = function(editableLayers) {
     // Removing text from button as I feel they look better without it.
     L.drawLocal.edit.toolbar.buttons.edit = "";
@@ -44,9 +45,18 @@ let createDrawControl = function(editableLayers) {
 let saveOffPolygon = function(e, editableLayers) {
     var layer = e.layer;
 
+    // Adding click event to show a popup with the calculated values
+    layer.on('click', function(e){
+        var area = L.GeometryUtil.geodesicArea(layer.getLatLngs()[0]);
+        var toolTip = "Fake tooltip";
+        layer.bindTooltip(toolTip);
+    });
+
     // Adding the layer that was just created to the editableLayers object
     editableLayers.addLayer(layer);
 
+    // Showing the popup right after it's created.
+    layer.fire('click');
 }
 
 function createMap(container) {
@@ -88,4 +98,12 @@ export function mapAction(container) {
                     map = null;
                 }
     };
+}
+
+// Simple resize function to make sure the map looks and behaves as exepcted.
+export function resizeMap() {
+    // If the map is instatiated, run the invalidateSize function provided by Leaflet.js
+    if(map) {
+        map.invalidateSize();
+    }
 }

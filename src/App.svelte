@@ -21,7 +21,9 @@
 
 
 <script>
-	import {mapAction} from "./map/map.js"
+	import {resizeMap, mapAction} from "./map/map.js"
 </script>
+
+<svelte:window on:resize={resizeMap} />
 
 <div leaflet class="map" style="height:100%;width:100%" use:mapAction />
