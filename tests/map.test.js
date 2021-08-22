@@ -4,6 +4,7 @@
 import {
     calculateNominalPower,
     createDrawControl,
+    createMap,
     onClickEvent,
     saveOffPolygon } from "../src/map";
 
@@ -33,9 +34,6 @@ describe("When createDrawControl is called, ", () => {
 
 // Validate that saveOffPolygon still behaves as expected.
 describe("When saveOffPolygon is called, ", () => {
-    // Mock the on click event
-    let mockOnClickEventFn = jest.fn(onClickEvent);
-
     // Create a mocked event object
     var e = {
         layer: {
@@ -96,18 +94,73 @@ describe("When onClickEvent is called, ", () => {
         // Validate that geodesicArea is still being called
         expect(L.GeometryUtil.geodesicArea.mock.calls.length).toBe(1);
     });
-    // it("it will call calculateNominalPower.", () => {
-    //     // Call the onClickEvent function
-    //     onClickEvent(layer);
-
-    //     // Validate that the calculateNominalPower is still being called
-    //     expect(mockCalculateNonimalPowerFn.mock.calls.length).toBe(1);
-    // });
     it("it will bind a string to the layer.", () => {
         // Call the onClickEvent function
         onClickEvent(layer);
 
         // Validate that bindTooltip has been called
         expect(layer.bindTooltip.mock.calls.length).toBe(1);
+    });
+});
+
+// Validate createMap still behaves as expected
+describe("When createMap is called, ", () => {
+    // Create a mocked variable
+    var _map = {
+        addLayer: jest.fn(),
+        addControl: jest.fn(),
+        on: jest.fn()
+    }
+    // Mocking L.map function
+    L.map = jest.fn();
+
+    // Creating mocked function
+    var setViewFn = {
+        setView: jest.fn().mockReturnValue(_map)
+    };
+    // Mock return value
+    L.map.mockReturnValue(setViewFn);
+
+    // Mock tileLayer function
+    L.tileLayer = jest.fn();
+
+    // Creating mocked function
+    var addToFn = {
+        addTo: jest.fn()
+    }
+
+    // Adding mocked return result for TileLayer
+    L.tileLayer.mockReturnValue(addToFn);
+
+    it("L.map.setView will be called successfully.", () => {
+        // Call the createMap function
+        createMap("fake_input");
+
+        // Validate that map is being called
+        expect(L.map.mock.calls.length).toBe(1);
+        // Validate that setView is being called
+        expect(setViewFn.setView.mock.calls.length).toBe(1);
+
+    });
+    it("map.addLayer will be called successfully.", () => {
+        // Call the createMap function
+        createMap("fake_input");
+
+        // Validate that add layer has been called successfully.
+        expect(_map.addLayer.mock.calls.length).toBeGreaterThanOrEqual(1);
+    });
+    it("map.addControl will be called successfully.", () => {
+        // Call the createMap function
+        createMap("fake_input");
+
+        // Validate that add layer has been called successfully.
+        expect(_map.addControl.mock.calls.length).toBe(1);
+    });
+    it("L.tileLayer.addTo will be called successfully.", () => {
+        // Call the createMap function
+        createMap("fake_input");
+
+        // Validate TileLayer has been called successfully.
+        expect(L.tileLayer.mock.calls.length).toBe(1);
     });
 });
