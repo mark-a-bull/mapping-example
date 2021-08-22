@@ -21,7 +21,7 @@
 
 
 <script>
-	import {resizeMap, mapAction} from "./map/map.js"
+	import {resizeMap, mapAction} from "./map.js"
 </script>
 
 <svelte:window on:resize={resizeMap} />

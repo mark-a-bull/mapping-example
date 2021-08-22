@@ -44,7 +44,35 @@ You are able to run all avilable test by running the following command.
 
 - `npm run test`
 
+
+## How to use app
+
+In the topleft corner of the application, you will see a few buttons to interact with the app. The main one to create a new polygon, you will need to click the middle of 5 buttons.
+
+![middle_button](./assets/Middle-buttons.png)
+
+You will create the polygon by selecting different points on the map.
+
+![Draw-Polygons](./assets/Draw-Polygons.png)
+
+Once you created the polygon, you will see a tooltip popup whenever you click the polygon.
+
+This will show you the area and nominal power for the created polygon
+
+![Sample-calculation](./assets/Sample-Calculation.png)
+
+All measurements are measured in feet.
+
+You can edit the polygons by click the 4th button and selecting already created nodes or selecting new ones.
+
+![Edit-Polygons](./assets/Edit-Polygons.png)
+
+You can also delete polygons by selecting the 5th button and selecting any polygon on the map. It will not truely remove them until you select save.
+
+![Delete-Polygons](./assets/Delete-Polygons.png)
+
 ## References used
 
 - Creating the map using [Leaflet.js](https://leafletjs.com/reference-1.7.1.html#map-factory).
 - Adding a draw component to the map that only draws [polygons](https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html).
+- Forumal used to calculate [nominal power](https://myelectrical.com/notes/entryid/225/photovoltaic-pv-electrical-calculations).

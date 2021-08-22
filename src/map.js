@@ -3,14 +3,49 @@
 */
 
 import L, { popup } from 'leaflet';
+
 import 'leaflet-draw';
 
 // Variables to use later in the script
-let map;
+export let map;
 let editableLayers;
 
 // Lat Long values for Bentonville downtown
 const initialView = [36.37225557257298, -94.20976641751479];
+
+
+/**
+ * This will then calculate the nominal power using the following forumla
+ *
+ * https://myelectrical.com/notes/entryid/225/photovoltaic-pv-electrical-calculations
+ *
+ * The following calculation assumptions will be made.
+ *
+ * kWp = n * Wp/1000
+ *
+ * n  = number of solar panels used
+ * Wp = 250 rated solar panel
+ *
+ * To calculate the number of solar panels used, I will make the assumption I'm installing 5.42 ft x 3.25 ft (17.60 sq ft) solar panel that is rated 250Wp.
+ *
+ * So to find n given A, I will just use the following formula
+ *
+ * n = A / 17.60 sq ft
+ *
+ * Then calculate nominal power by using the above formual
+ *
+ * kWp = n * (250 /1000)
+ */
+let calculateNominalPower = function(area) {
+
+    // Take the floor because panels are sold as a single unit of above dimensions.
+    var num_of_panels = Math.floor(area / 17.60);
+
+    // Calculate nominal power
+    var nomialPower = num_of_panels * 0.25;
+    var areaTo2DecimalPlaces = Number.parseFloat(area).toFixed(2)
+    return `Nominal Power: ${nomialPower} kW      Area: ${areaTo2DecimalPlaces} ft^2`;
+}
 
 
 let createDrawControl = function(editableLayers) {
@@ -48,18 +83,18 @@ let saveOffPolygon = function(e, editableLayers) {
     // Adding click event to show a popup with the calculated values
     layer.on('click', function(e){
         var area = L.GeometryUtil.geodesicArea(layer.getLatLngs()[0]);
-        var toolTip = "Fake tooltip";
+        var toolTip = calculateNominalPower(area);
         layer.bindTooltip(toolTip);
     });
 
     // Adding the layer that was just created to the editableLayers object
     editableLayers.addLayer(layer);
 
-    // Showing the popup right after it's created.
-    layer.fire('click');
+    // Fire off trigger
+    layer.fire("click");
 }
 
-function createMap(container) {
+export function createMap(container) {
     // Creating the map with the container being the div and setting it to the lat/long and zoom level
     let _map = L.map(container).setView(initialView, 19);
 
