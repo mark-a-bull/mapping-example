@@ -36,19 +36,18 @@ const initialView = [36.37225557257298, -94.20976641751479];
  *
  * kWp = n * (250 /1000)
  */
-let calculateNominalPower = function(area) {
+export let calculateNominalPower = function(area) {
 
     // Take the floor because panels are sold as a single unit of above dimensions.
     var num_of_panels = Math.floor(area / 17.60);
 
     // Calculate nominal power
     var nomialPower = num_of_panels * 0.25;
-    var areaTo2DecimalPlaces = Number.parseFloat(area).toFixed(2)
-    return `Nominal Power: ${nomialPower} kW      Area: ${areaTo2DecimalPlaces} ft^2`;
+    return nomialPower;
 }
 
 
-let createDrawControl = function(editableLayers) {
+export let createDrawControl = function(editableLayers) {
     // Removing text from button as I feel they look better without it.
     L.drawLocal.edit.toolbar.buttons.edit = "";
     L.drawLocal.edit.toolbar.buttons.remove = "";
@@ -77,14 +76,30 @@ let createDrawControl = function(editableLayers) {
     return drawControl;
 }
 
-let saveOffPolygon = function(e, editableLayers) {
+// Extracting the onClickEvent into a separate function to allow easy of testings
+export let onClickEvent = function(layer) {
+    // Calculate the area of the polygon provided.
+    var area = L.GeometryUtil.geodesicArea(layer.getLatLngs()[0]);
+
+    // Call the calculate function to find the nominal power
+    var nominalPower = calculateNominalPower(area);
+
+    // Parse the area to a user readable value.
+    var areaTo2DecimalPlaces = Number.parseFloat(area).toFixed(2)
+
+    // Create the toolTip string
+    var toolTip = `Nominal Power: ${nominalPower} kW      Area: ${areaTo2DecimalPlaces} ft^2`;
+
+    // Bind the tooltip to the layer.
+    layer.bindTooltip(toolTip);
+}
+
+export let saveOffPolygon = function(e, editableLayers) {
     var layer = e.layer;
 
     // Adding click event to show a popup with the calculated values
     layer.on('click', function(e){
-        var area = L.GeometryUtil.geodesicArea(layer.getLatLngs()[0]);
-        var toolTip = calculateNominalPower(area);
-        layer.bindTooltip(toolTip);
+       onClickEvent(layer);
     });
 
     // Adding the layer that was just created to the editableLayers object
@@ -114,7 +129,7 @@ export function createMap(container) {
 
     // Whenever a polygon is created, run the following function to add click events and add to the editable layer.
     _map.on(L.Draw.Event.CREATED, function(e) {
-        saveOffPolygon(e, editableLayers)
+        saveOffPolygon(e, editableLayers);
     });
 
     // Return the map object to the calling function
