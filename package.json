@@ -5,11 +5,13 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --no-clear"
+    "start": "sirv public --no-clear",
+    "test": "jest"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
+    "jest": "^27.0.6",
     "leaflet": "latest",
     "leaflet-draw": "^1.0.4",
     "rollup": "^2.3.4",
