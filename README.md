@@ -71,6 +71,12 @@ You can also delete polygons by selecting the 5th button and selecting any polyg
 
 ![Delete-Polygons](./assets/Delete-Polygons.png)
 
+
+## Assumptions used through the code
+
+- All solar panels used in this exercise will be 5.42 ft x 3.25 ft (17.60 sq ft) solar panel that is rated 250Wp.
+- All polygons(regardless of actual shape) will be able to hold the calculated number of panels based on the above figure.
+
 ## References used
 
 - Creating the map using [Leaflet.js](https://leafletjs.com/reference-1.7.1.html#map-factory).
