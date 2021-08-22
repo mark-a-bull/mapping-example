@@ -45,6 +45,7 @@ You are able to run all avilable test by running the following command.
 - `npm run test`
 
 
+![CodeCoverage](./assets/CodeCoverage.png)
 ## How to use app
 
 In the topleft corner of the application, you will see a few buttons to interact with the app. The main one to create a new polygon, you will need to click the middle of 5 buttons.
