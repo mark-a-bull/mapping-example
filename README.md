@@ -1,18 +1,20 @@
 # Mapping Example
 
+## Overview
+
 The purpose of this example is to do the following.
 
 - Design a website that showcases a map using 3rd party providers
 - Draw a polygon onto the map in any arbitrary area
 - Calculate the nominal power of the drawn polygon
 
-## Delivery
+### Delivery
 
 - App must be simple, intuitive and smooth user experience
 - README file with how to configure and run
 - Show approach through version control history
 
-## Rules
+### Rules
 
 - App must be compatible with modern broswers and mobile devices
 - Allowed to use 3rd party libraries, APIs and code fragments, with citations
@@ -20,7 +22,7 @@ The purpose of this example is to do the following.
 - Justify decisions, assumptions and usage of 3rd party services or
 - Comment code
 
-## Bonus Optional Features
+### Bonus Optional Features
 
 - Search for an address in the United States
 - Enter tilt and orientation angles for the surface under the polygon and calculate the area of the polygon's projection on that plane.
