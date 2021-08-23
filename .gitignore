@@ -1,6 +1,5 @@
 /node_modules/
-/public/
-/public/*
+/public/build/
 /scripts/
 /coverage/
 .DS_Store
