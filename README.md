@@ -86,4 +86,4 @@ You can also delete polygons by selecting the 5th button and selecting any polyg
 
 - Creating the map using [Leaflet.js](https://leafletjs.com/reference-1.7.1.html#map-factory).
 - Adding a draw component to the map that only draws [polygons](https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html).
-- Forumal used to calculate [nominal power](https://myelectrical.com/notes/entryid/225/photovoltaic-pv-electrical-calculations).
+- Formula used to calculate [nominal power](https://myelectrical.com/notes/entryid/225/photovoltaic-pv-electrical-calculations).
