@@ -36,9 +36,13 @@ Main.js, App.svelte, package.json, rollup.config.js are all created by cloning t
 
 You are able to run this locally by running the following commands
 
+- `export HOST=0.0.0.0` // Allows access from your local computer to any mobile device connected to same network.
+- `export PORT=80` // Can change this to any port you desire
 - `npm install`
 - `npm run dev`
-    - Running dev allows live reloading of the app. You can find the url to open in the terminal but it's normally `localhost:5000/`
+    - Running dev allows live reloading of the app. You can find the url to open in the terminal but it's normally `localhost:80/`. You will also see the Network option for access from mobile.
+
+![NPM-Run-Dev](./assets/Npm-Run-Dev.png)
 
 You are able to run all avilable test by running the following command.
 
