@@ -1,6 +1,6 @@
-# Mapping Homework
+# Mapping Example
 
-The purpose of this homework is to do the following.
+The purpose of this example is to do the following.
 
 - Design a website that showcases a map using 3rd party providers
 - Draw a polygon onto the map in any arbitrary area
